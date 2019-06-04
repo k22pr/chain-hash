@@ -1,0 +1,19 @@
+{
+  "name": "chain-hash",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "@babel/runtime": "^7.4.5",
+    "chain-hash": "^0.0.9",
+    "sha3": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.4"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js"
+  }
+}
