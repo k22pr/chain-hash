@@ -1,7 +1,9 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var chain_1 = __importDefault(require("./chain"));
-exports.default = chain_1.default;
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _chain = _interopRequireDefault(require("./chain"));
+
+//var ChainHash = require("./dist/chain.js");
+var chain = new _chain["default"]("test");
+console.log(chain.GetKey); //console.log(chain.GetFirst);

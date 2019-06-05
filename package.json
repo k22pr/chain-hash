@@ -1,19 +1,35 @@
 {
   "name": "chain-hash",
-  "version": "1.0.0",
+  "description": "chain-hash package",
+  "version": "0.1.1",
+  "main": "./dist/chain.js",
+  "types": "dist/chain.d.ts",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "author": "ksPr",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/plugin-transform-typescript": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-plugin-add-module-exports": "^1.0.2",
+    "babel-loader": "^8.0.6",
+    "nodemon": "^1.19.1",
+    "ts-loader": "^6.0.2"
+  },
   "dependencies": {
     "@babel/runtime": "^7.4.5",
-    "chain-hash": "^0.0.9",
+    "@types/node": "^12.0.4",
     "sha3": "^2.0.4"
   },
-  "devDependencies": {
-    "@types/node": "^12.0.4"
-  },
   "scripts": {
-    "build": "tsc",
-    "start": "node ./dist/index.js"
+    "babel-node": "babel-node --extensions \".ts,.tsx\"",
+    "serve": "nodemon --exec yarn run babel-node -- ./src/index.ts",
+    "build": "babel src --out-dir dist --extensions \".ts,.tsx\"",
+    "product": "node ./dist/index.js"
   }
 }
