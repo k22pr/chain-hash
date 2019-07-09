@@ -1,5 +1,7 @@
 # hash-chain
 
+Secure password key storage.
+
 ## example
 
 ### Using

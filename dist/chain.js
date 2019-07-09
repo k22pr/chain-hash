@@ -13,7 +13,7 @@ var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/creat
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _sha = _interopRequireDefault(require("sha3"));
+var _sha = require("sha3");
 
 var KeySize = [224, 256, 384, 512];
 
@@ -24,14 +24,17 @@ function () {
     var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 512;
     (0, _classCallCheck2["default"])(this, ChainHash);
     (0, _defineProperty2["default"])(this, "chainHash", void 0);
-    (0, _defineProperty2["default"])(this, "sha", new _sha["default"]());
-    this.sha = new _sha["default"](size);
+    (0, _defineProperty2["default"])(this, "subKey", void 0);
+    (0, _defineProperty2["default"])(this, "sha", new _sha.SHA3());
+    this.sha = new _sha.SHA3(size);
     if (hashString.length != size / 8) hashString = this.makeHash(hashString);
     this.chainHash = [hashString];
 
     for (var i = 0; i < 5; i++) {
       this.chainHash.push(this.makeHash(this.chainHash[this.chainHash.length - 1]));
     }
+
+    this.subKey = new _sha.Keccak().update(this.chainHash[1]).digest("hex");
   }
 
   (0, _createClass2["default"])(ChainHash, [{
@@ -73,9 +76,14 @@ function () {
      */
 
   }, {
-    key: "GetUniqueString",
+    key: "GetUnique",
     get: function get() {
       return this.chainHash[4];
+    }
+  }, {
+    key: "SubKey",
+    get: function get() {
+      return this.subKey;
     }
   }]);
   return ChainHash;

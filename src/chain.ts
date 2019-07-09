@@ -1,8 +1,9 @@
-import SHA3 from "sha3";
+import { SHA3, Keccak } from "sha3";
 
 let KeySize = [224, 256, 384, 512];
 export default class ChainHash {
   private chainHash: string[];
+  private subKey: string;
   private sha: SHA3 = new SHA3();
 
   constructor(hashString: string, size: 224 | 256 | 384 | 512 = 512) {
@@ -11,10 +12,9 @@ export default class ChainHash {
     this.chainHash = [hashString];
 
     for (var i = 0; i < 5; i++) {
-      this.chainHash.push(
-        this.makeHash(this.chainHash[this.chainHash.length - 1])
-      );
+      this.chainHash.push(this.makeHash(this.chainHash[this.chainHash.length - 1]));
     }
+    this.subKey = new Keccak().update(this.chainHash[1]).digest("hex");
   }
 
   private makeHash(hash: string): string {
@@ -39,8 +39,12 @@ export default class ChainHash {
   /*
    * safty show value.
    */
-  get GetUniqueString(): string {
+  get GetUnique(): string {
     return this.chainHash[4];
+  }
+
+  get SubKey(): string {
+    return this.subKey;
   }
 
   /**
