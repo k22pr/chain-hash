@@ -2,7 +2,7 @@
   "name": "chain-hash",
   "description": "chain-hash package",
   "repository": "https://github.com/k22pr/chain-hash",
-  "version": "0.1.6",
+  "version": "0.1.61",
   "main": "./dist/chain.js",
   "types": "dist/chain.d.ts",
   "license": "MIT",
