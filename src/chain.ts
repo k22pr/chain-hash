@@ -43,7 +43,7 @@ export default class ChainHash {
     return this.chainHash[4];
   }
 
-  get SubKey(): string {
+  public get SubKey(): string {
     return this.subKey;
   }
 
